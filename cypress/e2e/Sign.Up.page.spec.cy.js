@@ -6,7 +6,7 @@ beforeEach(() => {
 cy.visit('/register');
 });
 
-describe('My home page', () => {
+describe('Sign Up page', () => {
 
 
 it('should register user', () => {
