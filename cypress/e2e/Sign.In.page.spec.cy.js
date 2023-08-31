@@ -1,17 +1,18 @@
 /// <reference types="cypress" />
 
 beforeEach(() => {
-cy.visit('/');
+cy.visit('/login');
 });
 
-describe('My home page', () => {
+describe('Sign In Page', () => {
 // Проверяем что при клике на Sign In открывается соответсвующая страница
-it('should click on Sign in', () => {
-  cy.contains('a', 'Sign in')
-    .should('exist')
-    .click();
+it('should allow to log in ', () => {
+  const {email, username, password} = generateUser()
 
-  cy.url().should('include', '/login');
-  cy.get('h1').should('contain.text', 'Sign in');
+  cy.request('POST', '/users', {
+    email,
+    username,
+    password
+  });
 });
 });

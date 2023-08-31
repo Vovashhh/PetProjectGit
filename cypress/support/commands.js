@@ -24,6 +24,8 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+import {generateUser} from '../support/ganagate.users'
+
 Cypress.Commands.add('findByPlaceholder', (placeholder) =>{
   cy.get(`[placeholder=${placeholder}]`);
 })
@@ -36,3 +38,16 @@ originalFn('/#' + url)
 //   cy.url().should('equal', Cypress.config().baseUrl + '/#')
 // })
 // Вернуться к этому чуть позже и разобраться 
+
+Cypress.Commands.add('registerNewUser', () => {
+  // const {email, username, password} = generateUser()
+  const {email, username, password} = generateUser()
+  cy.request('POST', '/users', {
+    email,
+    password,
+    username
+  }).then(response => ({
+    ...response.body.user, 
+    password
+  }));
+})

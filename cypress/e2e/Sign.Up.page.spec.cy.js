@@ -103,15 +103,9 @@ it('Can`t register without 1 lowercase letter', () => {
 
 it('Should not allow with 2 simle Email', () => {
     
-  const {email, username, password} = generateUser()
+  cy.registerNewUser().then(({email, username, password}) => {
 
-  cy.request('POST', '/users', {
-    email,
-    username,
-    password
-  });
-
-  cy.findByPlaceholder('Username')
+    cy.findByPlaceholder('Username')
     .type(username);
   cy.findByPlaceholder('Email')
     .type(email);
@@ -121,6 +115,8 @@ it('Should not allow with 2 simle Email', () => {
     .click();
   cy.get('.swal-text')
     .should('contain.text', 'Email already taken.');
+  })
+
 
   })
 
