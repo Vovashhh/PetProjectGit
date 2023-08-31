@@ -5,14 +5,18 @@ cy.visit('/login');
 });
 
 describe('Sign In Page', () => {
-// Проверяем что при клике на Sign In открывается соответсвующая страница
-it('should allow to log in ', () => {
-  const {email, username, password} = generateUser()
 
-  cy.request('POST', '/users', {
-    email,
-    username,
-    password
-  });
+  it('should allow to log in ', () => {
+  cy.get('h1')
+    .should('contain.text', 'Sign in');
+  cy.registerNewUser().then(({email, password, username}) =>{
+    cy.findByPlaceholder('Email')
+    .type(email);
+  cy.findByPlaceholder('Password')
+    .type(password);
+  cy.get('.btn')
+  .click();
+  cy.get(':nth-child(4) > .nav-link').should('contain.text', username)
+  })
 });
 });

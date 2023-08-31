@@ -51,3 +51,8 @@ Cypress.Commands.add('registerNewUser', () => {
     password
   }));
 })
+
+Cypress.Commands.add('findByTestId', (value) => {
+  cy.get(`[data-cy=${value}]`);
+})
+// Не используется, потому как нет такого селектора
