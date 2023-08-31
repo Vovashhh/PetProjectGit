@@ -1,10 +1,10 @@
-describe('template spec', () => {
-  it('Open home page', () => {
-    cy.visit('/#/')
-    cy.get('h1').
-    contains('conduit')
-  })
+/// <reference types="cypress" />
 
+beforeEach(() => {
+  cy.visit('/');
+});
+
+describe('My home page', () => {
   it('should have all parts', () => {
     // Проверяем что мы перешли на страницу 
     cy.get('h1').should('contain.text', 'conduit');
@@ -16,4 +16,17 @@ describe('template spec', () => {
     cy.contains('.sidebar', 'Popular Tags').should('be.visible');
   });
 
-})
+  it('should click on Sign in', () => {
+    // Проверяем что можно перейти на страницу логина
+    cy.contains('a', 'Sign in').click();
+    cy.url().should('include', '/login');
+    cy.get('h1').should('contain.text', 'Sign in');
+  });
+
+  it('should click on Sign up', () => {
+    // Проверяем что можно перейти на страницу регистрации
+    cy.contains('a', 'Sign up').click();
+    cy.url().should('include', '/register');
+    cy.get('h1').should('contain.text', 'Sign up');
+  });
+});
