@@ -25,6 +25,7 @@ it('should register user', () => {
     .click();
   cy.get('.swal-text')
     .should('contain.text', 'Your registration was successful!');
+  // cy.assertPageUrl('/')
 
 });
 
@@ -44,7 +45,7 @@ it('Can`t register with password without number', () => {
     .click();
   cy.get('.swal-text')
     .should('contain.text', 'Password must be 8 characters long and include 1 number, 1 uppercase letter, and 1 lowercase letter.');
-});
+  });
 
 it('Can`t register without 1 uppercase letter', () => {
     

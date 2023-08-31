@@ -31,3 +31,8 @@ Cypress.Commands.add('findByPlaceholder', (placeholder) =>{
 Cypress.Commands.overwrite('visit', (originalFn, url, options) =>{
 originalFn('/#' + url)
 })
+
+// Cypress.Commands.add('assertPageUrl', (url) => {
+//   cy.url().should('equal', Cypress.config().baseUrl + '/#')
+// })
+// Вернуться к этому чуть позже и разобраться 
