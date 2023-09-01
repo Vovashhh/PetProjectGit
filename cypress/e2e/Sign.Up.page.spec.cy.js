@@ -152,7 +152,7 @@ const {username, password} = generateUser()
  
 });
 
-it('should not register whithout email', () => {
+it('should not register whithout Username', () => {
 
 const {email, password} = generateUser()
   
@@ -166,7 +166,7 @@ const {email, password} = generateUser()
    
 });
 
-it('should not register whithout email', () => {
+it('should not register whithout Password', () => {
 
 const {email, username} = generateUser()
     
@@ -176,22 +176,25 @@ const {email, username} = generateUser()
 
   cy.get('.btn').click();
 
-  cy.get('.swal-text').should('contain.text', 'Password field required.');
+  cy.get('.swal-text')
+    .should('contain.text', 'Password field required.');
      
-});
-
-it('User can use Tab and Enter 2 work with form', () => {
-
-  const {email, username} = generateUser()
-      
-    cy.findByPlaceholder('Email').type(email);
-  
-    cy.findByPlaceholder('Username').type('username');
-  
-    cy.get('.btn').click();
-  
-    cy.get('.swal-text').should('contain.text', 'Password field required.');
-       
   });
+
+it('User can use Enter 2 work with form', () => {
+
+  const {email, username, password} = generateUser()
+
+  cy.get('h1').should('contain.text', 'Sign up');
+
+  cy.findByPlaceholder('Username').type(username);
+
+  cy.findByPlaceholder('Email').type(email);
+
+  cy.findByPlaceholder('Password').type(password + `{Enter}`);
+
+  cy.get('.swal-text').should('contain.text', 'Your registration was successful!');
+         
+});
 
 });    
