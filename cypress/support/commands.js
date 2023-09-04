@@ -56,3 +56,16 @@ Cypress.Commands.add('registerNewUser', () => {
 //   cy.get(`[data-cy=${value}]`);
 // })
 // Не используется, потому как нет такого селектора
+
+Cypress.Commands.add('login', (email, password) => {
+  cy.registerNewUser().then(({ email, password }) => {
+    cy.request('POST', 'users/login', {
+      user: {
+        email,
+        password
+      }
+    }).then((response) => {
+      cy.setCookie('drash_sess', response.body.user.token);
+    });
+  });
+});
