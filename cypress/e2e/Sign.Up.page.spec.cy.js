@@ -10,39 +10,32 @@ describe('Sign Up page', () => {
   it('should register user', () => {
     const { email, username, password } = generateUser();
 
-    cy.get('h1').should('contain.text', 'Sign up');
-
+    cy.findH1ByText('Sign up');
     cy.findByPlaceholder('Username').type(username);
 
     cy.findByPlaceholder('Email').type(email);
 
     cy.findByPlaceholder('Password').type(password);
 
-    cy.get('.btn').click();
+    cy.clickButWithClass('btn');
 
-    cy.get('.swal-text').should(
-      'contain.text',
-      'Your registration was successful!'
-    );
-
-    // cy.assertPageUrl('/')
+    cy.checkSwalText('Your registration was successful!');
   });
 
-  it('Can`t register with password without number', () => {
+  it('User cannot register with the password without numbers', () => {
     const { email, username, password } = generateUser();
 
-    cy.get('h1').should('contain.text', 'Sign up');
+    cy.findH1ByText('Sign up');
 
     cy.findByPlaceholder('Username').type(username);
 
     cy.findByPlaceholder('Email').type(email);
 
-    cy.findByPlaceholder('Password').type('Qwertyqwe');
+    cy.findByPlaceholder('Password').type('Qwertyqwe + `{enter}`');
 
-    cy.get('.btn').click();
+    // cy.clickButWithClass('btn')
 
-    cy.get('.swal-text').should(
-      'contain.text',
+    cy.checkSwalText(
       'Password must be 8 characters long and include 1 number, 1 uppercase letter, and 1 lowercase letter.'
     );
   });
@@ -50,18 +43,15 @@ describe('Sign Up page', () => {
   it('Can`t register without 1 uppercase letter', () => {
     const { email, username, password } = generateUser();
 
-    cy.get('h1').should('contain.text', 'Sign up');
+    cy.findH1ByText('Sign up');
 
     cy.findByPlaceholder('Username').type(username);
 
     cy.findByPlaceholder('Email').type(email);
 
-    cy.findByPlaceholder('Password').type('qwerty123');
+    cy.findByPlaceholder('Password').type('qwerty123 + `{enter}`');
 
-    cy.get('.btn').click();
-
-    cy.get('.swal-text').should(
-      'contain.text',
+    cy.checkSwalText(
       'Password must be 8 characters long and include 1 number, 1 uppercase letter, and 1 lowercase letter.'
     );
   });
@@ -69,18 +59,17 @@ describe('Sign Up page', () => {
   it('Can`t register with short password', () => {
     const { email, username, password } = generateUser();
 
-    cy.get('h1').should('contain.text', 'Sign up');
+    cy.findH1ByText('Sign up');
 
     cy.findByPlaceholder('Username').type(username);
 
     cy.findByPlaceholder('Email').type(email);
 
-    cy.findByPlaceholder('Password').type('123qW');
+    cy.findByPlaceholder('Password').type('1qW');
 
-    cy.get('.btn').click();
+    cy.clickButWithClass('btn');
 
-    cy.get('.swal-text').should(
-      'contain.text',
+    cy.checkSwalText(
       'Password must be 8 characters long and include 1 number, 1 uppercase letter, and 1 lowercase letter.'
     );
   });
@@ -88,18 +77,15 @@ describe('Sign Up page', () => {
   it('Can`t register without 1 lowercase letter', () => {
     const { email, username, password } = generateUser();
 
-    cy.get('h1').should('contain.text', 'Sign up');
+    cy.findH1ByText('Sign up');
 
     cy.findByPlaceholder('Username').type(username);
 
     cy.findByPlaceholder('Email').type(email);
 
-    cy.findByPlaceholder('Password').type('QWER1234543');
+    cy.findByPlaceholder('Password').type('QWER1234543 + `{enter}`');
 
-    cy.get('.btn').click();
-
-    cy.get('.swal-text').should(
-      'contain.text',
+    cy.checkSwalText(
       'Password must be 8 characters long and include 1 number, 1 uppercase letter, and 1 lowercase letter.'
     );
   });
@@ -110,18 +96,16 @@ describe('Sign Up page', () => {
 
       cy.findByPlaceholder('Email').type(email);
 
-      cy.findByPlaceholder('Password').type(password);
+      cy.findByPlaceholder('Password').type(password + `{enter}`);
 
-      cy.get('.btn').click();
-
-      cy.get('.swal-text').should('contain.text', 'Email already taken.');
+      cy.checkSwalText('Email already taken.');
     });
   });
 
   it('can`t register user with invalid email', () => {
     const { email, username, password } = generateUser();
 
-    cy.get('h1').should('contain.text', 'Sign up');
+    cy.findH1ByText('Sign up');
 
     cy.get('[placeholder=Username]').type(username);
 
@@ -129,9 +113,9 @@ describe('Sign Up page', () => {
 
     cy.get('[placeholder=Password]').type(password);
 
-    cy.get('.btn').click();
+    cy.clickButWithClass('btn');
 
-    cy.get('.swal-text').should('contain.text', 'Email must be a valid email.');
+    cy.checkSwalText('Email must be a valid email.');
   });
 
   it('should not register whithout email', () => {
@@ -141,9 +125,9 @@ describe('Sign Up page', () => {
 
     cy.findByPlaceholder('Password').type('password');
 
-    cy.get('.btn').click();
+    cy.clickButWithClass('btn');
 
-    cy.get('.swal-text').should('contain.text', 'Email field required.');
+    cy.checkSwalText('Email field required.');
   });
 
   it('should not register whithout Username', () => {
@@ -153,9 +137,9 @@ describe('Sign Up page', () => {
 
     cy.findByPlaceholder('Password').type('password');
 
-    cy.get('.btn').click();
+    cy.clickButWithClass('btn');
 
-    cy.get('.swal-text').should('contain.text', 'Username field required.');
+    cy.checkSwalText('Username field required.');
   });
 
   it('should not register whithout Password', () => {
@@ -165,9 +149,9 @@ describe('Sign Up page', () => {
 
     cy.findByPlaceholder('Username').type('username');
 
-    cy.get('.btn').click();
+    cy.clickButWithClass('btn');
 
-    cy.get('.swal-text').should('contain.text', 'Password field required.');
+    cy.checkSwalText('Password field required.');
   });
 
   it('User can use Enter 2 work with form', () => {
@@ -181,9 +165,6 @@ describe('Sign Up page', () => {
 
     cy.findByPlaceholder('Password').type(password + `{Enter}`);
 
-    cy.get('.swal-text').should(
-      'contain.text',
-      'Your registration was successful!'
-    );
+    cy.checkSwalText('Your registration was successful!');
   });
 });

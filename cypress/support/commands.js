@@ -30,6 +30,18 @@ Cypress.Commands.add('findByPlaceholder', (placeholder) => {
   cy.get(`[placeholder="${placeholder}"]`);
 });
 
+Cypress.Commands.add('findH1ByText', (text) => {
+  cy.get('h1').should('contain.text', text);
+});
+
+Cypress.Commands.add('checkSwalText', (text) => {
+  cy.get('.swal-text').should('contain.text', text);
+});
+
+Cypress.Commands.add('clickButWithClass', (className) => {
+  cy.get(`.${className}`).click();
+});
+
 Cypress.Commands.overwrite('visit', (originalFn, url, options) => {
   originalFn('/#' + url);
 });
@@ -55,13 +67,10 @@ Cypress.Commands.add('login', (user) => {
   });
 });
 
-// Cypress.Commands.add('findByTestId', (value) => {
-//   cy.get(`[data-cy=${value}]`);
-// })
-// Не используется, потому как нет такого селектора
+Cypress.Commands.add('findByTestId', (value) => {
+  cy.get(`[data-cy=${value}]`);
+});
 
-
-// Cypress.Commands.add('assertPageUrl', (url) => {
-//   cy.url().should('equal', Cypress.config().baseUrl + '/#')
-// })
-// Вернуться к этому чуть позже и разобраться
+Cypress.Commands.add('assertPageUrl', (url) => {
+  cy.url().should('equal', Cypress.config().baseUrl + '/#');
+});

@@ -14,7 +14,7 @@ describe('Settings page', () => {
   });
 
   it('Should have a correct title', () => {
-    cy.get('h1').should('contain', 'Your Settings');
+    cy.findH1ByText('Your Settings');
   });
 
   it('should have email input', function () {

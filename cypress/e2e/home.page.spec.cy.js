@@ -6,7 +6,7 @@ beforeEach(() => {
 
 describe('It should have a title', () => {
   it('should have all parts', () => {
-    cy.get('h1').should('contain.text', 'conduit');
+    cy.findH1ByText('conduit');
   });
 
   it('should have Global Feed', () => {
@@ -20,12 +20,12 @@ describe('It should have a title', () => {
   it('should click on Sign in', () => {
     cy.contains('a', 'Sign in').click();
     cy.url().should('include', '/login');
-    cy.get('h1').should('contain.text', 'Sign in');
+    cy.findH1ByText('Sign in');
   });
 
   it('should click on Sign up', () => {
     cy.contains('a', 'Sign up').click();
     cy.url().should('include', '/register');
-    cy.get('h1').should('contain.text', 'Sign up');
+    cy.findH1ByText('Sign up');
   });
 });
