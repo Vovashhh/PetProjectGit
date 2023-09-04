@@ -52,7 +52,7 @@ Cypress.Commands.add('registerNewUser', () => {
   }));
 })
 
-Cypress.Commands.add('findByTestId', (value) => {
-  cy.get(`[data-cy=${value}]`);
-})
+// Cypress.Commands.add('findByTestId', (value) => {
+//   cy.get(`[data-cy=${value}]`);
+// })
 // Не используется, потому как нет такого селектора
