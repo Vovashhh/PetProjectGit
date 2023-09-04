@@ -26,9 +26,9 @@
 
 import {generateUser} from '../support/ganagate.users'
 
-Cypress.Commands.add('findByPlaceholder', (placeholder) =>{
-  cy.get(`[placeholder=${placeholder}]`);
-})
+Cypress.Commands.add('findByPlaceholder', (placeholder) => {
+  cy.get(`[placeholder="${placeholder}"]`);
+});
 
 Cypress.Commands.overwrite('visit', (originalFn, url, options) =>{
 originalFn('/#' + url)
@@ -57,15 +57,10 @@ Cypress.Commands.add('registerNewUser', () => {
 // })
 // Не используется, потому как нет такого селектора
 
-Cypress.Commands.add('login', (email, password) => {
-  cy.registerNewUser().then(({ email, password }) => {
+Cypress.Commands.add('login', (user) => {
     cy.request('POST', 'users/login', {
-      user: {
-        email,
-        password
-      }
+      user
     }).then((response) => {
       cy.setCookie('drash_sess', response.body.user.token);
-    });
+    })
   });
-});
