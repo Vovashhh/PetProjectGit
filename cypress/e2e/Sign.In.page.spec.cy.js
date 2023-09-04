@@ -1,85 +1,73 @@
 /// <reference types="cypress" />
 
 beforeEach(() => {
-cy.visit('/login');
+  cy.visit('/login');
 });
 
 describe('Sign In Page', () => {
-
   it('should allow to log in ', () => {
-  cy.get('h1')
-    .should('contain.text', 'Sign in');
-  cy.registerNewUser().then(({email, password, username}) =>{
-    cy.findByPlaceholder('Email')
-    .type(email);
-  cy.findByPlaceholder('Password')
-    .type(password);
-  cy.get('.btn')
-  .click();
-  cy.get(':nth-child(4) > .nav-link').should('contain.text', username)
-  })
-});
+    cy.get('h1').should('contain.text', 'Sign in');
+    cy.registerNewUser().then(({ email, password, username }) => {
+      cy.findByPlaceholder('Email').type(email);
+      cy.findByPlaceholder('Password').type(password);
+      cy.get('.btn').click();
+      cy.get(':nth-child(4) > .nav-link').should('contain.text', username);
+    });
+  });
 
-it('should allow to log in with use Enter', () => {
-  cy.get('h1').should('contain.text', 'Sign in');
+  it('should allow to log in with use Enter', () => {
+    cy.get('h1').should('contain.text', 'Sign in');
 
-  cy.registerNewUser().then(({email, password, username}) =>{
+    cy.registerNewUser().then(({ email, password, username }) => {
+      cy.findByPlaceholder('Email').type(email);
 
-  cy.findByPlaceholder('Email').type(email);
+      cy.findByPlaceholder('Password').type(password + `{Enter}`);
 
-  cy.findByPlaceholder('Password').type(password + `{Enter}`);
+      cy.get(':nth-child(4) > .nav-link').should('contain.text', username);
+    });
+  });
 
-  cy.get(':nth-child(4) > .nav-link').should('contain.text', username)
-  })
-});
+  it('should not log in whithout Email ', () => {
+    cy.get('h1').should('contain.text', 'Sign in');
 
-it('should not log in whithout Email ', () => {
-  cy.get('h1').should('contain.text', 'Sign in');
+    cy.registerNewUser().then(({ password }) => {
+      cy.findByPlaceholder('Password').type(password + `{Enter}`);
 
-  cy.registerNewUser().then(({password}) =>{
+      cy.get('.swal-text').should('contain.text', 'Email field required.');
+    });
+  });
 
-  cy.findByPlaceholder('Password').type(password + `{Enter}`);
+  it('should not log in whithout Password ', () => {
+    cy.get('h1').should('contain.text', 'Sign in');
 
-  cy.get('.swal-text').should('contain.text', 'Email field required.');
-  })
-});
+    cy.registerNewUser().then(({ email }) => {
+      cy.findByPlaceholder('Email').type(email + `{Enter}`);
 
-it('should not log in whithout Password ', () => {
-  cy.get('h1').should('contain.text', 'Sign in');
+      cy.get('.swal-text').should('contain.text', 'Password field required.');
+    });
+  });
 
-  cy.registerNewUser().then(({email}) =>{
+  it('should not log in with wrong Email ', () => {
+    cy.get('h1').should('contain.text', 'Sign in');
 
-  cy.findByPlaceholder('Email').type(email + `{Enter}`);
+    cy.registerNewUser().then(({ email, password, username }) => {
+      cy.findByPlaceholder('Email').type(email + 'g');
 
-  cy.get('.swal-text').should('contain.text', 'Password field required.');
-  })
-});
+      cy.findByPlaceholder('Password').type(password + `{Enter}`);
 
-it('should not log in with wrong Email ', () => {
-  cy.get('h1').should('contain.text', 'Sign in');
+      cy.get('.swal-text').should('contain.text', 'Invalid user credentials.');
+    });
+  });
 
-  cy.registerNewUser().then(({email, password, username}) =>{
+  it('should not log in with wrong Password ', () => {
+    cy.get('h1').should('contain.text', 'Sign in');
 
-  cy.findByPlaceholder('Email').type(email + 'g');
+    cy.registerNewUser().then(({ email, password, username }) => {
+      cy.findByPlaceholder('Email').type(email);
 
-  cy.findByPlaceholder('Password').type(password + `{Enter}`);
+      cy.findByPlaceholder('Password').type(password + `f` + `{Enter}`);
 
-  cy.get('.swal-text').should('contain.text', 'Invalid user credentials.');
-  })
-});
-
-it('should not log in with wrong Password ', () => {
-  cy.get('h1').should('contain.text', 'Sign in');
-
-  cy.registerNewUser().then(({email, password, username}) =>{
-
-  cy.findByPlaceholder('Email').type(email);
-
-  cy.findByPlaceholder('Password').type(password + `f` + `{Enter}`);
-
-  cy.get('.swal-text').should('contain.text', 'Invalid user credentials.');
-  })
-});
-
-
+      cy.get('.swal-text').should('contain.text', 'Invalid user credentials.');
+    });
+  });
 });

@@ -24,43 +24,44 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import {generateUser} from '../support/ganagate.users'
+import { generateUser } from '../support/ganagate.users';
 
 Cypress.Commands.add('findByPlaceholder', (placeholder) => {
   cy.get(`[placeholder="${placeholder}"]`);
 });
 
-Cypress.Commands.overwrite('visit', (originalFn, url, options) =>{
-originalFn('/#' + url)
-})
-
-// Cypress.Commands.add('assertPageUrl', (url) => {
-//   cy.url().should('equal', Cypress.config().baseUrl + '/#')
-// })
-// Вернуться к этому чуть позже и разобраться 
+Cypress.Commands.overwrite('visit', (originalFn, url, options) => {
+  originalFn('/#' + url);
+});
 
 Cypress.Commands.add('registerNewUser', () => {
   // const {email, username, password} = generateUser()
-  const {email, username, password} = generateUser()
+  const { email, username, password } = generateUser();
   cy.request('POST', '/users', {
     email,
     password,
-    username
-  }).then(response => ({
-    ...response.body.user, 
-    password
+    username,
+  }).then((response) => ({
+    ...response.body.user,
+    password,
   }));
-})
+});
+
+Cypress.Commands.add('login', (user) => {
+  cy.request('POST', 'users/login', {
+    user,
+  }).then((response) => {
+    cy.setCookie('drash_sess', response.body.user.token);
+  });
+});
 
 // Cypress.Commands.add('findByTestId', (value) => {
 //   cy.get(`[data-cy=${value}]`);
 // })
 // Не используется, потому как нет такого селектора
 
-Cypress.Commands.add('login', (user) => {
-    cy.request('POST', 'users/login', {
-      user
-    }).then((response) => {
-      cy.setCookie('drash_sess', response.body.user.token);
-    })
-  });
+
+// Cypress.Commands.add('assertPageUrl', (url) => {
+//   cy.url().should('equal', Cypress.config().baseUrl + '/#')
+// })
+// Вернуться к этому чуть позже и разобраться
