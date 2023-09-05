@@ -7,7 +7,7 @@ describe('Articless page', () => {
     cy.visit('/editor')
   })
 
-  it('should allow to create a new article', () => {
+  it('Should allow creating a new article', () => {
     cy.findByPlaceholder('Article Title').type('First Article')
     cy.clickButWithClass('btn-primary');
     cy.assertPageUrl('/#/articles/first-article')

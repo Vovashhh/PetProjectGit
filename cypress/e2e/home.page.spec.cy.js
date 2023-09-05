@@ -9,23 +9,23 @@ describe('It should have a title', () => {
     cy.findH1ByText('conduit');
   });
 
-  it('should have Global Feed', () => {
+  it('Verify the Presence of Global Feed Section', () => {
     cy.contains('a', 'Global Feed').should('be.visible');
   });
 
-  it('should have Popular tags', () => {
+  it('Verify the Presence of Popular Tags Section', () => {
     cy.contains('.sidebar', 'Popular Tags').should('be.visible');
   });
 
-  it('should click on Sign in', () => {
+  it('Click on Sign in', () => {
     cy.contains('a', 'Sign in').click();
-    cy.url().should('include', '/login');
+    cy.assertPageUrl('/#/login')
     cy.findH1ByText('Sign in');
   });
 
-  it('should click on Sign up', () => {
+  it('Click on Sign up', () => {
     cy.contains('a', 'Sign up').click();
-    cy.url().should('include', '/register');
+    cy.assertPageUrl('/#/register');
     cy.findH1ByText('Sign up');
   });
 });

@@ -16,7 +16,7 @@ describe('Sign In Page', () => {
     });
   });
 
-  it('should allow to log in with use Enter', () => {
+  it('should allow logging in using Enter key', () => {
     cy.findH1ByText('Sign in');
 
     cy.registerNewUser().then(({ email, password, username }) => {
@@ -28,7 +28,7 @@ describe('Sign In Page', () => {
     });
   });
 
-  it('should not log in whithout Email ', () => {
+  it('should not log in without an Email', () => {
     cy.findH1ByText('Sign in');
 
     cy.registerNewUser().then(({ password }) => {
@@ -38,7 +38,7 @@ describe('Sign In Page', () => {
     });
   });
 
-  it('should not log in whithout Password ', () => {
+  it('should not log in without a Password', () => {
     cy.findH1ByText('Sign in');
 
     cy.registerNewUser().then(({ email }) => {
@@ -48,7 +48,7 @@ describe('Sign In Page', () => {
     });
   });
 
-  it('should not log in with wrong Email ', () => {
+  it('should not log in with an incorrect Email', () => {
     cy.findH1ByText('Sign in');
 
     cy.registerNewUser().then(({ email, password, username }) => {
@@ -60,7 +60,7 @@ describe('Sign In Page', () => {
     });
   });
 
-  it('should not log in with wrong Password ', () => {
+  it('should not log in with an incorrect Password', () => {
     cy.findH1ByText('Sign in');
 
     cy.registerNewUser().then(({ email, password, username }) => {
