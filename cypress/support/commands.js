@@ -72,5 +72,15 @@ Cypress.Commands.add('findByTestId', (value) => {
 });
 
 Cypress.Commands.add('assertPageUrl', (url) => {
-  cy.url().should('equal', Cypress.config().baseUrl + '/#');
+  cy.url().should('equal', Cypress.config().baseUrl + url);
+});
+
+Cypress.Commands.add('registerAndLogin', () => {
+  cy.registerNewUser().then((user) => {
+    cy.login(user).then(() => user);
+  })
+})
+
+Cypress.Commands.add('findByCss', (selector) => {
+  cy.get(selector);
 });

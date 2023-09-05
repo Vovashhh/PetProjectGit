@@ -5,13 +5,13 @@ describe('Settings page', () => {
   beforeEach(() => {
     cy.visit('/login');
 
-    cy.registerNewUser()
-      .then((user) => {
-        cy.login(user).then(() => user);
-      })
-      .as('user');
+    cy.registerAndLogin().as('user');
 
     cy.visit('/settings');
+  });
+
+  it('Should have a correct title', () => {
+    cy.findH1ByText('Your Settings');
   });
 
   it('Should have a correct title', () => {
@@ -52,7 +52,7 @@ describe('Settings page', () => {
   })
 
   //Этот тест фейлится - баг
-  it.only('Can choose email with password and login with new data', () => {
+  it('Can choose email with password and login with new data', () => {
     const user = generateUser();
     const newPass = 'Qwerty321'
     
