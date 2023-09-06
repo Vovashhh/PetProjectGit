@@ -78,8 +78,8 @@ Cypress.Commands.add('assertPageUrl', (url) => {
 Cypress.Commands.add('registerAndLogin', () => {
   cy.registerNewUser().then((user) => {
     cy.login(user).then(() => user);
-  })
-})
+  });
+});
 
 Cypress.Commands.add('findByCss', (selector) => {
   cy.get(selector);

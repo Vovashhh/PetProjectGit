@@ -7,9 +7,11 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
     "cypress": "^13.0.0",
-    "eslint": "^8.48.0",
     "eslint-plugin-cypress": "^2.14.0",
+    "eslint-plugin-react": "^7.33.2",
     "prettier": "^3.0.3",
     "prettier-eslint": "^15.0.1"
   }

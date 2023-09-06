@@ -13,16 +13,16 @@ To successfully run the tests, make sure you have the following tools installed:
 
 ```bash
 # 1. Clone the repository:
-git clone [https://github.com/Vovashhh/PetProjectGit.git]
+git clone https://github.com/Vovashhh/PetProjectGit.git
 
-# 2. Open the command line and navigate to the project folder:
-cd [PetProjectGit\deno-drash-realworld-example-app-master]
+# 2. Clone the repository for docker and open in command line:
+git clone https://github.com/drashland/deno-drash-realworld-example-app.git
 
 # 3. To start the container, run the following commands:
 docker-compose build
 docker-compose up
 
-# 4. Open a new command line window and navigate to the project's root.
+# 4. Open a new command line window and navigate to the project's PetProjectGit.
 
 # 5. Launch Cypress using the following command:
 npx cypress open
@@ -88,4 +88,3 @@ In the `command.js` file, custom Cypress commands have been created to enhance c
 ## Conclusion
 
 This project serves as a practical exercise in Cypress testing, allowing testers to familiarize themselves with the testing environment and various custom commands for efficient testing procedures. While not striving for complete test coverage, it provides valuable experience in quality assurance processes.
-

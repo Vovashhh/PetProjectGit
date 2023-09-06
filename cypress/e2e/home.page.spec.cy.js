@@ -19,7 +19,7 @@ describe('It should have a title', () => {
 
   it('Click on Sign in', () => {
     cy.contains('a', 'Sign in').click();
-    cy.assertPageUrl('/#/login')
+    cy.assertPageUrl('/#/login');
     cy.findH1ByText('Sign in');
   });
 

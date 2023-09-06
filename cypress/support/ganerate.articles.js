@@ -8,7 +8,7 @@ function generateArticle() {
   return {
     title, // заголовок
     description, // описание
-    article, // статъя 
+    article, // статъя
   };
 }
 
