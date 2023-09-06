@@ -18,7 +18,7 @@ git clone https://github.com/Vovashhh/PetProjectGit.git
 # 2. Clone the repository for docker and open in command line:
 git clone https://github.com/drashland/deno-drash-realworld-example-app.git
 
-# 3. To start the container, run the following commands:
+# 3. To start the container, run the following commands in drashland/deno-drash-realworld:
 docker-compose build
 docker-compose up
 
@@ -84,6 +84,25 @@ In the `command.js` file, custom Cypress commands have been created to enhance c
 ### `findByCss`
 
 - Searches for elements based on CSS selectors.
+
+# Creating Test Data and Test Automation
+
+In this repository, we employ certain practices and tools to create more realistic test data and automate tests in Cypress.
+
+## Using Faker.js Library
+
+The `generate.users.js` and `generate.articles.js` files contain examples of using Faker.js to create user and article data, respectively.
+
+To generate test data that closely resembles real-world data, we use the [@faker-js/faker](https://github.com/marak/Faker.js/) library. It allows us to create random but realistic data such as names, addresses, email addresses, and more. Applying realistic data in tests helps ensure more accurate and comprehensive coverage of various scenarios.
+
+
+## index.d.ts File
+
+For more convenient and automated test work, we've added scripts to the `index.d.ts` file. These scripts enable the use of custom commands with automatic input when working with Cypress tests. This makes the process of writing and maintaining tests more efficient and productive.
+
+## Code Formatting with Prettier
+
+To ensure code structure and cleanliness, we use the code formatting tool [Prettier](https://prettier.io/). Running the command `prettier --write .` automatically formats your code according to the established formatting rules. This helps make the code more readable and ensures compliance with coding standards.
 
 ## Conclusion
 
