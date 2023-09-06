@@ -89,7 +89,7 @@ In the `command.js` file, custom Cypress commands have been created to enhance c
 
 In this repository, we employ certain practices and tools to create more realistic test data and automate tests in Cypress.
 
-## Using Faker.js Library
+Using Faker.js Library
 
 The `generate.users.js` and `generate.articles.js` files contain examples of using Faker.js to create user and article data, respectively.
 
