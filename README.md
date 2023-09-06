@@ -31,6 +31,8 @@ npx cypress open
 
 # Project Description: Cypress Testing for https://react-redux.realworld.io/
 
+```
+
 ## Overview
 
 This project focuses on conducting Cypress testing for a local version of the website [https://react-redux.realworld.io/](https://react-redux.realworld.io/#/?_k=zkfztn). It is important to note that the primary goal of this project is not to achieve complete test coverage but rather to explore and practice testing procedures.
