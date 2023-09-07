@@ -23,7 +23,7 @@ describe('Sign Up page', () => {
   });
 
   it('User cannot register with the password without numbers', () => {
-    const { email, username, password } = generateUser();
+    const { email, username } = generateUser();
 
     cy.findH1ByText('Sign up');
 
@@ -41,7 +41,7 @@ describe('Sign Up page', () => {
   });
 
   it('Can`t register without 1 uppercase letter', () => {
-    const { email, username, password } = generateUser();
+    const { email, username } = generateUser();
 
     cy.findH1ByText('Sign up');
 
@@ -57,7 +57,7 @@ describe('Sign Up page', () => {
   });
 
   it('Can`t register with short password', () => {
-    const { email, username, password } = generateUser();
+    const { email, username } = generateUser();
 
     cy.findH1ByText('Sign up');
 
@@ -75,7 +75,7 @@ describe('Sign Up page', () => {
   });
 
   it('Can`t register without 1 lowercase letter', () => {
-    const { email, username, password } = generateUser();
+    const { email, username } = generateUser();
 
     cy.findH1ByText('Sign up');
 
@@ -103,7 +103,7 @@ describe('Sign Up page', () => {
   });
 
   it('can`t register user with invalid email', () => {
-    const { email, username, password } = generateUser();
+    const { username, password } = generateUser();
 
     cy.findH1ByText('Sign up');
 
@@ -123,7 +123,7 @@ describe('Sign Up page', () => {
 
     cy.findByPlaceholder('Username').type(username);
 
-    cy.findByPlaceholder('Password').type('password');
+    cy.findByPlaceholder('Password').type(password);
 
     cy.clickButWithClass('btn');
 
@@ -135,7 +135,7 @@ describe('Sign Up page', () => {
 
     cy.findByPlaceholder('Email').type(email);
 
-    cy.findByPlaceholder('Password').type('password');
+    cy.findByPlaceholder('Password').type(password);
 
     cy.clickButWithClass('btn');
 
@@ -147,7 +147,7 @@ describe('Sign Up page', () => {
 
     cy.findByPlaceholder('Email').type(email);
 
-    cy.findByPlaceholder('Username').type('username');
+    cy.findByPlaceholder('Username').type(username);
 
     cy.clickButWithClass('btn');
 

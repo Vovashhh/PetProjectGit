@@ -20,8 +20,9 @@ describe('Settings Page', () => {
   });
 
   it("Can't save settings without a username", () => {
+    const update = 'btn.btn-lg.btn-primary.pull-xs-right';
     cy.findByPlaceholder('Your username').clear();
-    cy.clickButWithClass('btn.btn-lg.btn-primary.pull-xs-right');
+    cy.clickButWithClass(update);
     cy.checkSwalText('Username field required.');
   });
 
@@ -32,28 +33,31 @@ describe('Settings Page', () => {
 
   it('Can choose a new username', () => {
     const user = generateUser();
+    const update = 'btn.btn-lg.btn-primary.pull-xs-right';
     cy.findByPlaceholder('Your username').clear().type(user.username);
-    cy.clickButWithClass('btn.btn-lg.btn-primary.pull-xs-right');
+    cy.clickButWithClass(update);
     cy.visit('/');
     cy.get(':nth-child(4) > .nav-link').should('contain.text', user.username);
   });
 
   it('Can add a bio', () => {
     const bio = 'Some text about me';
+    const update = 'btn.btn-lg.btn-primary.pull-xs-right';
     cy.findByPlaceholder('Short bio about you').type(bio);
-    cy.clickButWithClass('btn.btn-lg.btn-primary.pull-xs-right');
+    cy.clickButWithClass(update);
     cy.get('.swal-title').contains('Update successful!');
   });
 
   it('Can change email with a password and login with new data', () => {
     const user = generateUser();
     const newPass = 'Qwerty321';
+    const update = 'btn.btn-lg.btn-primary.pull-xs-right';
 
     cy.findByPlaceholder('Email').clear().type(user.email);
     cy.findByPlaceholder('Password').type(newPass);
-    cy.clickButWithClass('btn.btn-lg.btn-primary.pull-xs-right');
+    cy.clickButWithClass(update);
     cy.get('.swal-title').contains('Update successful!');
-    cy.clickButWithClass('swal-button.swal-button--confirm');
+    cy.clickButWithClass(update);
     cy.clickButWithClass('btn.btn-outline-danger');
     cy.findH1ByText('conduit');
     cy.visit('/login');

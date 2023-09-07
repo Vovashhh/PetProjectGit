@@ -51,7 +51,7 @@ describe('Sign In Page', () => {
   it('should not log in with an incorrect Email', () => {
     cy.findH1ByText('Sign in');
 
-    cy.registerNewUser().then(({ email, password, username }) => {
+    cy.registerNewUser().then(({ email, password }) => {
       cy.findByPlaceholder('Email').type(email + 'g');
 
       cy.findByPlaceholder('Password').type(password + `{Enter}`);
@@ -63,7 +63,7 @@ describe('Sign In Page', () => {
   it('should not log in with an incorrect Password', () => {
     cy.findH1ByText('Sign in');
 
-    cy.registerNewUser().then(({ email, password, username }) => {
+    cy.registerNewUser().then(({ email, password }) => {
       cy.findByPlaceholder('Email').type(email);
 
       cy.findByPlaceholder('Password').type(password + `f` + `{Enter}`);
