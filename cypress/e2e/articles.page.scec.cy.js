@@ -52,7 +52,7 @@ describe('Articless page', () => {
     cy.assertPageUrl(`/#/articles/${expectedSlug}`);
   });
 
-  it('Should delete an article', () => {
+  it ('Should delete an article', () => {
     const { title, description, article } = generateArticle();
 
     cy.findByPlaceholder('Article Title').type(title);
