@@ -115,6 +115,7 @@ The `beforeEach` hook is used to navigate to the page before each test using a c
 
 In these tests, we utilize a custom command called `registerNewUser`, which registers a new user using a POST request and retrieves user data using the `then` construct. The checks include entering incorrect data and verifying successful user login.
 
+
 ## Sign-Up Page Tests (Sign.Up.page.spec.cy.js)
 
 These tests use a random data generator for user registration. After registration, the tests verify that the user is logged in and their username is displayed. Checks include field validation and error handling for specific scenarios.

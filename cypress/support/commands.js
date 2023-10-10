@@ -47,7 +47,6 @@ Cypress.Commands.overwrite('visit', (originalFn, url, options) => {
 });
 
 Cypress.Commands.add('registerNewUser', () => {
-  // const {email, username, password} = generateUser()
   const { email, username, password } = generateUser();
   cy.request('POST', '/users', {
     email,
@@ -84,3 +83,6 @@ Cypress.Commands.add('registerAndLogin', () => {
 Cypress.Commands.add('findByCss', (selector) => {
   cy.get(selector);
 });
+
+//точно всі команди, які прописані тут, ти використовуєш?
+//якщо так, то ок. Якщо ні, то видали зайві команди
